@@ -5,6 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class DeplacementPersonnage : MonoBehaviour {
 
+    [Range(1,2)]
+    private int player;
+
+    public int Player {
+        get { return player; }
+        set { player = value; }
+    }
+
+
     [SerializeField]
     private float speed;
 
@@ -39,7 +48,7 @@ public class DeplacementPersonnage : MonoBehaviour {
 	void Update () {
 
         // Traitement direction
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+        rb.velocity = new Vector2(Input.GetAxisRaw("HorizontalP"+player) * speed, rb.velocity.y);
 
         Collider2D isGrounded_left = Physics2D.Raycast(new Vector2(transform.position.x - 0.5f, transform.position.y), Vector2.down, 1f, LayerMask.GetMask("Objects")).collider;
         Collider2D isGrounded_right = Physics2D.Raycast(new Vector2(transform.position.x + 0.5f, transform.position.y), Vector2.down, 1f, LayerMask.GetMask("Objects")).collider;
@@ -49,12 +58,11 @@ public class DeplacementPersonnage : MonoBehaviour {
         Debug.DrawRay(transform.position, Vector2.down);
 
         if (isGrounded) {
-            Debug.Log("Restart");
             jump_nb = 0;
         }
 
         // Traitement saut
-        if (Input.GetAxisRaw("Jump") > 0) {
+        if (Input.GetAxisRaw("ActionP"+player) > 0) {
 
             if (!is_jump_down) {
 
