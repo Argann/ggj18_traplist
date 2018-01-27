@@ -53,14 +53,11 @@ public class ItemGenerator : MonoBehaviour {
     IEnumerator Spawner() {
         while (true) {
 
-            Debug.Log("C'est parti !");
-
             // Au début, aucune position correcte n'est trouvée
             bool correctPosition = false;
             Vector2 item_position = new Vector2();
 
             while (!correctPosition) {
-                Debug.Log("Nouvelle position...");
                 // Définition d'une position de spawn aléatoire autour de la caméra
                 item_position = new Vector2(
                         Random.Range(Camera.main.transform.position.x - range.x, Camera.main.transform.position.x + range.x),
@@ -73,8 +70,6 @@ public class ItemGenerator : MonoBehaviour {
                 // Attente de la frame suivante afin de ne pas bloquer dans une boucle infinie
                 yield return new WaitForEndOfFrame();
             }
-
-            Debug.Log("Trouvée ! : " + item_position);
             
             // Une fois une position correcte trouvée, on instantie l'item.
             Instantiate(items[Random.Range(0, items.Count)], item_position, Quaternion.identity, transform);

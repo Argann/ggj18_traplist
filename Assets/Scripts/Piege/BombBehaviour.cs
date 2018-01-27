@@ -14,7 +14,6 @@ public class BombBehaviour : Piege {
 	}
 
 	void Explode() {
-		Debug.Log("BOOM");
 		Destroy(gameObject);
 	}
 }
