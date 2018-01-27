@@ -25,6 +25,7 @@ public class DroneBehavior : GenericController {
     private Rigidbody2D rb2d;
 
 	void Start () {
+        base.LoadSwap();
         // Instantiation des variables
 		rb2d = GetComponent<Rigidbody2D> ();
         Inventories.Init();
