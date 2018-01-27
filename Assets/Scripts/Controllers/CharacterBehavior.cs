@@ -26,6 +26,12 @@ public class CharacterBehavior : GenericController {
     private Rigidbody2D rb;
 
     /// <summary>
+    /// Animator du personnage
+    /// </summary>
+    [SerializeField]
+    private Animator anim;
+
+    /// <summary>
     /// Est-ce la première frame d'appui sur la touche action ?
     /// </summary>
     private bool is_jump_down;
@@ -66,6 +72,9 @@ public class CharacterBehavior : GenericController {
 
         // Récupération de la vélocité en fonction de l'axe du joueur
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        // Changement de l'animation du personnage
+        anim.SetBool("run", horizontal != 0);
 
         // Flip du personnage en fonction de l'input
         if (horizontal > 0f) {

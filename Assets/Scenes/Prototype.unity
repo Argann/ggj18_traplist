@@ -494,32 +494,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 212790789390775788, guid: d088de8c9d7dd3c4ab41d20bd71d9b6c,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300002, guid: 87e24082a259a3e4392f63fed7afd5d3,
-        type: 3}
-    - target: {fileID: 61066045159894840, guid: d088de8c9d7dd3c4ab41d20bd71d9b6c,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 61066045159894840, guid: d088de8c9d7dd3c4ab41d20bd71d9b6c,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114112408240035056, guid: d088de8c9d7dd3c4ab41d20bd71d9b6c,
-        type: 2}
-      propertyPath: speed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 212790789390775788, guid: d088de8c9d7dd3c4ab41d20bd71d9b6c,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d088de8c9d7dd3c4ab41d20bd71d9b6c, type: 2}
   m_IsPrefabParent: 0
