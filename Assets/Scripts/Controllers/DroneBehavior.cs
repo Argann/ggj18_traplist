@@ -15,11 +15,6 @@ public class DroneBehavior : GenericController {
     public Piege TODELETE;
 
     /// <summary>
-    /// Inventaire des deux joueurs
-    /// </summary>
-    private List<Piege>[] inventaires = new List<Piege>[3];
-
-    /// <summary>
     /// Vitesse de déplacement du drone
     /// </summary>
     public float speed;
@@ -29,17 +24,12 @@ public class DroneBehavior : GenericController {
     /// </summary>
     private Rigidbody2D rb2d;
 
-    public void AddTrap(Piege piege) {
-        inventaires[player].Add(piege);
-    }
-
 	void Start () {
         // Instantiation des variables
 		rb2d = GetComponent<Rigidbody2D> ();
-        inventaires[1] = new List<Piege>();
-        inventaires[2] = new List<Piege>();
-        inventaires[1].Add(TODELETE);
-        inventaires[2].Add(TODELETE);
+        Inventories.Init();
+        Inventories.AddTrap(TODELETE, 1);
+        Inventories.AddTrap(TODELETE, 2);
     }
 	
 	void Update () {
@@ -57,9 +47,9 @@ public class DroneBehavior : GenericController {
 
         // Gestion de l'action
         float action = Input.GetAxisRaw("ActionP"+player);
-        if (action != 0f && inventaires[player].Count > 0) {
-            Instantiate(inventaires[player][0], transform.position, transform.rotation);
-            inventaires[player].RemoveAt(0);
+        if (action != 0f && !Inventories.IsEmpty(player)) {
+            Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation);
+            Inventories.DeleteTrap(player);
         }
     }
 }
