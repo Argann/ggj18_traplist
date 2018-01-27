@@ -6,6 +6,7 @@ using UnityEngine;
 public class DeplacementPersonnage : MonoBehaviour {
 
     [Range(1,2)]
+    [SerializeField]
     private int player;
 
     public int Player {
