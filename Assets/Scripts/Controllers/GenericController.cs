@@ -14,7 +14,7 @@ public class GenericController : MonoBehaviour {
     [SerializeField]
     protected int player;
 
-    private float delai = 20f;
+    private float delai = Settings.Delai;
 
     public int Player {
         get { return player; }
