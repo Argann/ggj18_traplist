@@ -121,8 +121,8 @@ InputManager:
     m_Name: VerticalP2
     descriptiveName: J2 - Action
     descriptiveNegativeName: 
-    negativeButton: down
-    positiveButton: up
+    negativeButton: up
+    positiveButton: down
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -169,8 +169,8 @@ InputManager:
     m_Name: VerticalP1
     descriptiveName: J2 - Action
     descriptiveNegativeName: 
-    negativeButton: s
-    positiveButton: z
+    negativeButton: z
+    positiveButton: s
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
