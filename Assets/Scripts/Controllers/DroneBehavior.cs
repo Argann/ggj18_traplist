@@ -34,6 +34,7 @@ public class DroneBehavior : GenericController {
     }
 
 	void Start () {
+        base.LoadSwap();
         // Instantiation des variables
 		rb2d = GetComponent<Rigidbody2D> ();
         inventaires[1] = new List<Piege>();
