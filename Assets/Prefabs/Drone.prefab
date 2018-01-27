@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4472cb0c9c8544bb6d083761c242d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 1
+  player: 2
   TODELETE: {fileID: 114945830238245292, guid: 0e0ccb41718100a49b4e1220a2184d4f, type: 2}
   speed: 20
 --- !u!212 &212529503288814378
