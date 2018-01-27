@@ -29,6 +29,10 @@ public class DroneBehavior : GenericController {
     /// </summary>
     private Rigidbody2D rb2d;
 
+    public void AddTrap(Piege piege) {
+        inventaires[player].Add(piege);
+    }
+
 	void Start () {
         // Instantiation des variables
 		rb2d = GetComponent<Rigidbody2D> ();
