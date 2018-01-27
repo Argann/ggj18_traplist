@@ -17,7 +17,7 @@ public class DroneBehavior : GenericController {
     /// <summary>
     /// Inventaire des deux joueurs
     /// </summary>
-    private List<Piege>[] inventaires = new List<Piege>[2];
+    private List<Piege>[] inventaires = new List<Piege>[3];
 
     /// <summary>
     /// Vitesse de déplacement du drone
@@ -36,6 +36,8 @@ public class DroneBehavior : GenericController {
 	void Start () {
         // Instantiation des variables
 		rb2d = GetComponent<Rigidbody2D> ();
+        inventaires[1] = new List<Piege>();
+        inventaires[2] = new List<Piege>();
         inventaires[1].Add(TODELETE);
         inventaires[2].Add(TODELETE);
     }

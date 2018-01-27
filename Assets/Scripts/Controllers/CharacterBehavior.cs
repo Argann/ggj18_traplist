@@ -97,6 +97,12 @@ public class CharacterBehavior : GenericController {
         } else {
             is_jump_down = false;
         }
+    }
 
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Pieges") {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
     }
 }
