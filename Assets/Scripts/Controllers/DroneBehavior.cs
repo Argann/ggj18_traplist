@@ -24,6 +24,33 @@ public class DroneBehavior : GenericController {
     /// </summary>
     private Rigidbody2D rb2d;
 
+    /// <summary>
+    /// Hauteur maximale de la camera
+    /// </summary>
+    private const float MAX_H = 6f;
+
+    /// <summary>
+    /// Hauteur minimale de la camera
+    /// </summary>
+    private const float MIN_H = -MAX_H;
+
+    /// <summary>
+    /// Largeur maximale de la camera
+    /// </summary>
+    private const float MAX_V = 4.5f;
+
+    /// <summary>
+    /// Largeur minimale de la camera
+    /// </summary>
+    private const float MIN_V = -MAX_V;
+
+    /// <summary>
+    /// Objet camera
+    /// </summary>
+    private Camera came;
+
+    
+
 	void Start () {
         base.LoadSwap();
         // Instantiation des variables
@@ -31,6 +58,8 @@ public class DroneBehavior : GenericController {
         Inventories.Init();
         Inventories.AddTrap(TODELETE, 1);
         Inventories.AddTrap(TODELETE, 2);
+
+        came = Camera.main;
     }
 	
 	void Update () {
@@ -46,11 +75,31 @@ public class DroneBehavior : GenericController {
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
         rb2d.AddForce (movement * speed);
 
+        ManageBoundaries();
+
         // Gestion de l'action
         float action = Input.GetAxisRaw("ActionP"+player);
         if (action != 0f && !Inventories.IsEmpty(player)) {
             Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation);
             Inventories.DeleteTrap(player);
         }
+    }
+
+    void ManageBoundaries() {
+        float x_axis = 0f;
+        float y_axis = 0f;
+        if(transform.position.x < came.transform.position.x + MIN_H) {
+            x_axis = 1f;
+        }
+        if(transform.position.x > came.transform.position.x + MAX_H) {
+            x_axis = -1f;
+        }
+        if(transform.position.y < came.transform.position.y + MIN_V) {
+            y_axis = 1f;
+        }
+        if(transform.position.y > came.transform.position.y + MAX_V) {
+            y_axis = -1f;
+        }
+        rb2d.AddForce (new Vector2(x_axis, y_axis) * speed * 2f);
     }
 }
