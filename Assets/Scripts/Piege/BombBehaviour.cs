@@ -7,12 +7,15 @@ public class BombBehaviour : Piege {
     [SerializeField]
     private ParticleSystem ps;
 
+    private Animator anim;
+
     void Awake() {
         ps.Stop();
     }
 
     // Use this for initialization
     void Start () {
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -20,7 +23,11 @@ public class BombBehaviour : Piege {
 	}
 
 	public void Explode() {
+        anim.SetBool("explodes", true);
         ps.Play();
-		Destroy(gameObject);
 	}
+
+    public void BLow() {
+        Destroy(gameObject);
+    }
 }

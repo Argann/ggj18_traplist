@@ -84,10 +84,12 @@ public class CharacterBehavior : GenericController {
         }
 
         // Est-ce que le joueur touche le sol sur sa droite ou sa gauche ?
-        Collider2D isGrounded_left = Physics2D.Raycast(new Vector2(transform.position.x - 0.5f, transform.position.y), Vector2.down, 2f, LayerMask.GetMask("Objects")).collider;
-        Collider2D isGrounded_right = Physics2D.Raycast(new Vector2(transform.position.x + 0.5f, transform.position.y), Vector2.down, 2f, LayerMask.GetMask("Objects")).collider;
+        Collider2D isGrounded_left = Physics2D.Raycast(new Vector2(transform.position.x - 0.5f, transform.position.y), Vector2.down, 1.4f, LayerMask.GetMask("Objects")).collider;
+        Collider2D isGrounded_right = Physics2D.Raycast(new Vector2(transform.position.x + 0.5f, transform.position.y), Vector2.down, 1.4f, LayerMask.GetMask("Objects")).collider;
 
         bool isGrounded = isGrounded_left || isGrounded_right;
+
+        anim.SetBool("onGround", isGrounded);
 
         // S'il touche le sol, alors on reset son nombre de saut
         if (isGrounded) {
@@ -116,6 +118,9 @@ public class CharacterBehavior : GenericController {
         } else {
             is_jump_down = false;
         }
+        
+        anim.SetBool("doubleSaut", jump_nb == 1);
+
     }
 
     void OnTriggerEnter2D(Collider2D other) {
