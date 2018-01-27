@@ -130,5 +130,24 @@ public class CharacterBehavior : GenericController {
             other.GetComponent<BombBehaviour>().Explode();
             Destroy(gameObject);
         }
+        if (other.gameObject.tag == "Tiles") {
+            // Ici, comparer position du joueur et des Tiles pour savoir si top, bot, left, right
+            if (transform.position.x < (other.transform.position.x - (other.bounds.size.x / 2))) {
+                MapManager.MoveLeftTiles();
+                Debug.Log("Entree par la gauche !");
+            }
+            if (transform.position.x > (other.transform.position.x + (other.bounds.size.x / 2))) {
+                MapManager.MoveRightTiles();
+                Debug.Log("Entree par la droite !");
+            }
+            if (transform.position.y < (other.transform.position.y - (other.bounds.size.y / 2))) {
+                MapManager.MoveBottomTiles();
+                Debug.Log("Entree par le bas !");
+            }
+            if (transform.position.y > (other.transform.position.y + (other.bounds.size.y / 2))) {
+                MapManager.MoveTopTiles();
+                Debug.Log("Entree par le haut !");
+            }
+        }
     }
 }
