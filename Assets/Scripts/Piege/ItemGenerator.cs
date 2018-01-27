@@ -72,7 +72,7 @@ public class ItemGenerator : MonoBehaviour {
             }
             
             // Une fois une position correcte trouvée, on instantie l'item.
-            Instantiate(items[Random.Range(0, items.Count)], item_position, Quaternion.identity, transform);
+            Instantiate(items[Random.Range(0, items.Count)], item_position, Quaternion.identity, MapManager.GetCurrentCentre().transform);
 
             // Après l'instantiation, on attend un temps aléatoire avant de faire spawner le suivant
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));

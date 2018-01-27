@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Drone
   - Pieges
+  - Tiles
   layers:
   - Default
   - TransparentFX

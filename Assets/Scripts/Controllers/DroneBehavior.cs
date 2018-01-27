@@ -80,7 +80,7 @@ public class DroneBehavior : GenericController {
         // Gestion de l'action
         float action = Input.GetAxisRaw("ActionP"+player);
         if (action != 0f && !Inventories.IsEmpty(player)) {
-            Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation);
+            Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation, MapManager.GetCurrentCentre().transform);
             Inventories.DeleteTrap(player);
         }
     }
