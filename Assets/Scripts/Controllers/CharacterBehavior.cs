@@ -52,6 +52,8 @@ public class CharacterBehavior : GenericController {
         set { jumpForce = value; }
     }
 
+    private List<Collider2D> colls;
+
 
     public void Start () {
         base.LoadSwap();
