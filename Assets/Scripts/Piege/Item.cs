@@ -20,6 +20,13 @@ public class Item : MonoBehaviour {
     }
 
 
+    private Animator anim;
+
+
+    void Start() {
+        anim = GetComponent<Animator>();
+    }
+
     void OnTriggerEnter2D(Collider2D coll) {
         // Si le drone entre en collision avec l'item
         if (coll.CompareTag("Player")) {
@@ -28,7 +35,11 @@ public class Item : MonoBehaviour {
             // On ajoute le piège a son inventaire
             Inventories.AddTrap(contenu, player);
             // Et on supprime l'item
-            Destroy(gameObject);
+            anim.SetBool("taken", true);
         }
+    }
+
+    public void Blow() {
+        Destroy(gameObject);
     }
 }

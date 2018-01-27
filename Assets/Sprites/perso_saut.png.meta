@@ -1,24 +1,15 @@
 fileFormatVersion: 2
-guid: e9726206ff2834d4187e973f30747235
-timeCreated: 1517072486
+guid: 71d8151ff0e46394694d74c5259af844
+timeCreated: 1517072842
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: perso_course_0
-    21300002: perso_course_1
-    21300004: perso_course_2
-    21300006: perso_course_3
-    21300008: perso_course_4
-    21300010: perso_course_5
-    21300012: perso_course_6
-    21300014: perso_course_7
-    21300016: perso_course_8
-    21300018: perso_course_9
-    21300020: perso_course_10
-    21300022: perso_course_11
-    21300024: perso_course_12
-    21300026: perso_course_13
-    21300028: perso_course_14
+    21300000: perso_saut_0
+    21300002: perso_saut_1
+    21300004: perso_saut_2
+    21300006: perso_saut_3
+    21300008: perso_saut_4
+    21300010: perso_saut_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -95,91 +86,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: perso_course_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: perso_course_1
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: perso_course_2
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: perso_course_3
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: perso_course_4
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: perso_course_5
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 1024
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: perso_course_6
+      name: perso_saut_0
       rect:
         serializedVersion: 2
         x: 0
@@ -193,7 +100,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: perso_course_7
+      name: perso_saut_1
       rect:
         serializedVersion: 2
         x: 512
@@ -207,7 +114,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: perso_course_8
+      name: perso_saut_2
       rect:
         serializedVersion: 2
         x: 1024
@@ -221,49 +128,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: perso_course_9
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: perso_course_10
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: perso_course_11
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 512
-        width: 512
-        height: 512
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: perso_course_12
+      name: perso_saut_3
       rect:
         serializedVersion: 2
         x: 0
@@ -277,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: perso_course_13
+      name: perso_saut_4
       rect:
         serializedVersion: 2
         x: 512
@@ -291,7 +156,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: perso_course_14
+      name: perso_saut_5
       rect:
         serializedVersion: 2
         x: 1024
