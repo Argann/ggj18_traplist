@@ -120,7 +120,7 @@ public class CharacterBehavior : GenericController {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Pieges") {
-            Destroy(other.gameObject);
+            other.GetComponent<BombBehaviour>().Explode();
             Destroy(gameObject);
         }
     }

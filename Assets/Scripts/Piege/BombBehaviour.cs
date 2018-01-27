@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class BombBehaviour : Piege {
 
-	// Use this for initialization
-	void Start () {
-		Invoke("Explode", 10);
+    [SerializeField]
+    private ParticleSystem ps;
+
+    void Awake() {
+        ps.Stop();
+    }
+
+    // Use this for initialization
+    void Start () {
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	}
 
-	void Explode() {
+	public void Explode() {
+        ps.Play();
 		Destroy(gameObject);
 	}
 }
