@@ -47,7 +47,8 @@ public class CharacterBehavior : GenericController {
     }
 
 
-    void Start () {
+    public void Start () {
+        base.LoadSwap();
         // Récupération du Rigidbody2D
         rb = GetComponent<Rigidbody2D>();
 

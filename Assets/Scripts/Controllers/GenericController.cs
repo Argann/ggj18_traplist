@@ -14,10 +14,20 @@ public class GenericController : MonoBehaviour {
     [SerializeField]
     protected int player;
 
+    private float delai = 20f;
+
     public int Player {
         get { return player; }
         set { player = value; }
     }
 
+    protected void LoadSwap()
+    {
+        // La fonction d'inversion des joueurs est appelée toute les <delai> secondes
+        InvokeRepeating("SwapPlayers", delai, delai);
+    }
 
+    void SwapPlayers() {
+        player = 3 - player;
+    }
 }
