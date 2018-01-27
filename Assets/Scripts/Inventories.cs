@@ -9,6 +9,10 @@ public static class Inventories {
     /// </summary>
     private static List<Piege>[] inventaires = new List<Piege>[3];
 
+    public static List<Piege>[] Inventaires {
+        get { return inventaires; }
+    }
+
     /// <summary>
     /// Initialise les inventaires
     /// </summary>
