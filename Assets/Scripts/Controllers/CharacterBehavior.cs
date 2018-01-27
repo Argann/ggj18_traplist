@@ -62,12 +62,21 @@ public class CharacterBehavior : GenericController {
 
 	void Update () {
 
+        float horizontal = Input.GetAxisRaw("HorizontalP" + player);
+
         // Récupération de la vélocité en fonction de l'axe du joueur
-        rb.velocity = new Vector2(Input.GetAxisRaw("HorizontalP"+player) * speed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        // Flip du personnage en fonction de l'input
+        if (horizontal > 0f) {
+            transform.localScale = new Vector2(1f, 1f);
+        } else if (horizontal < 0f) {
+            transform.localScale = new Vector2(-1f, 1f);
+        }
 
         // Est-ce que le joueur touche le sol sur sa droite ou sa gauche ?
-        Collider2D isGrounded_left = Physics2D.Raycast(new Vector2(transform.position.x - 0.5f, transform.position.y), Vector2.down, 1f, LayerMask.GetMask("Objects")).collider;
-        Collider2D isGrounded_right = Physics2D.Raycast(new Vector2(transform.position.x + 0.5f, transform.position.y), Vector2.down, 1f, LayerMask.GetMask("Objects")).collider;
+        Collider2D isGrounded_left = Physics2D.Raycast(new Vector2(transform.position.x - 0.5f, transform.position.y), Vector2.down, 2f, LayerMask.GetMask("Objects")).collider;
+        Collider2D isGrounded_right = Physics2D.Raycast(new Vector2(transform.position.x + 0.5f, transform.position.y), Vector2.down, 2f, LayerMask.GetMask("Objects")).collider;
 
         bool isGrounded = isGrounded_left || isGrounded_right;
 
