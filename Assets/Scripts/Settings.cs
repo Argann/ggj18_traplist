@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour {
 
-    private static float delai = 20f;
+    private static float delai = 5f;
 
     public static float Delai {
         get { return delai; }

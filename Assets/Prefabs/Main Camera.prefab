@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 124687677102929048}
   - component: {fileID: 81803200634749216}
   - component: {fileID: 114821946543940858}
+  - component: {fileID: 114281907714890746}
+  - component: {fileID: 114010346463719326}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -156,6 +158,34 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114010346463719326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1772426955331004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870b9a8f0f82f4f56800cc427bcd1025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scanLineJitter: 0
+  _verticalJump: 0
+  _horizontalShake: 0
+  _colorDrift: 0
+  _shader: {fileID: 4800000, guid: da33272284ea24f208f36998880990be, type: 3}
+--- !u!114 &114281907714890746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1772426955331004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43273a8e4d54baa4f8991e7761294feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0.5
 --- !u!114 &114514174030458570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4472cb0c9c8544bb6d083761c242d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
   player: 2
   TODELETE: {fileID: 1398416272207668, guid: 9f5c122c453036345a28463212640b87, type: 2}
   speed: 20
