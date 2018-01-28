@@ -17,6 +17,18 @@ public class MapManager : MonoBehaviour {
 	void Start() {
 		staticTiles = tiles;
 	}
+
+	public Vector2 moy = new Vector2(0,0);
+	public static Vector2 stmoy = new Vector2(0,0);
+
+	void Update() {
+		moy = new Vector2(0,0);
+		foreach (GameObject tile in tiles) {
+			moy = moy + new Vector2(tile.transform.position.x, tile.transform.position.y);
+		}
+		moy = moy / tiles.Length;
+		stmoy = moy;
+	}
 	
 	public static void MoveLeftTiles() {
 		staticTiles[left[0]].transform.position = new Vector2(staticTiles[left[0]].transform.position.x + (3 * width), staticTiles[left[0]].transform.position.y);
