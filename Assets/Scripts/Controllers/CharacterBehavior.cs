@@ -168,29 +168,53 @@ public class CharacterBehavior : GenericController {
 
     }
 
+
+    private Collider2D current;
+
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Pieges") {
             other.GetComponent<BombBehaviour>().Explode();
             Destroy(gameObject);
         }
         if (other.gameObject.tag == "Tiles") {
+            current = other;
             // Ici, comparer position du joueur et des Tiles pour savoir si top, bot, left, right
             if (transform.position.x < (other.transform.position.x - (other.bounds.size.x / 2))) {
-                MapManager.MoveLeftTiles();
-                Debug.Log("Entree par la gauche !");
+                Invoke("MoveLeftTiles", .2f);
             }
             if (transform.position.x > (other.transform.position.x + (other.bounds.size.x / 2))) {
-                MapManager.MoveRightTiles();
-                Debug.Log("Entree par la droite !");
+                Invoke("MoveRightTiles", .2f);
             }
             if (transform.position.y < (other.transform.position.y - (other.bounds.size.y / 2))) {
-                MapManager.MoveBottomTiles();
-                Debug.Log("Entree par le bas !");
+                Invoke("MoveBottomTiles", .2f);
             }
             if (transform.position.y > (other.transform.position.y + (other.bounds.size.y / 2))) {
-                MapManager.MoveTopTiles();
-                Debug.Log("Entree par le haut !");
+                Invoke("MoveTopTiles", .2f);
             }
         }
+    }
+
+    void MoveLeftTiles() {
+        if(CheckBoundaries()) MapManager.MoveLeftTiles();
+    }
+
+    void MoveRightTiles() {
+        if(CheckBoundaries()) MapManager.MoveRightTiles();
+    }
+
+    void MoveBottomTiles() {
+        if(CheckBoundaries()) MapManager.MoveBottomTiles();
+    }
+
+    void MoveTopTiles() {
+        if(CheckBoundaries()) MapManager.MoveTopTiles();
+    }
+
+    bool CheckBoundaries() {
+        return 
+            transform.position.x > (current.transform.position.x - 4.5f) &&
+            transform.position.x < (current.transform.position.x + 4.5f) &&
+            transform.position.y > (current.transform.position.y - 4.5f) &&
+            transform.position.y < (current.transform.position.y + 4.5f);
     }
 }

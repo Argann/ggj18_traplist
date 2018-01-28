@@ -10,14 +10,14 @@ public class MapManager : MonoBehaviour {
 	private static int[] bottom = {2,5,8};
 	private static int centre = 4;
 
-	private static float width = 45f;
-	private static float height = 12f;
+	private static float width = 9f;
+	private static float height = 9f;
 
 	private static GameObject[] staticTiles = new GameObject[9];
 	void Start() {
 		staticTiles = tiles;
 	}
-
+	
 	public static void MoveLeftTiles() {
 		staticTiles[left[0]].transform.position = new Vector2(staticTiles[left[0]].transform.position.x + (3 * width), staticTiles[left[0]].transform.position.y);
 		staticTiles[left[1]].transform.position = new Vector2(staticTiles[left[1]].transform.position.x + (3 * width), staticTiles[left[1]].transform.position.y);
@@ -28,6 +28,14 @@ public class MapManager : MonoBehaviour {
 		right[0] = (right[0] + 3) % 9;
 		right[1] = (right[1] + 3) % 9;
 		right[2] = (right[2] + 3) % 9;
+		int tmp = top[0];
+		top[0] = top[1];
+		top[1] = top[2];
+		top[2] = tmp;
+		tmp = bottom[0];
+		bottom[0] = bottom[1];
+		bottom[1] = bottom[2];
+		bottom[2] = tmp;
 		centre = (centre + 3) % 9;
 	}
 
@@ -41,6 +49,14 @@ public class MapManager : MonoBehaviour {
 		left[0] = (left[0] + 6) % 9;
 		left[1] = (left[1] + 6) % 9;
 		left[2] = (left[2] + 6) % 9;
+		int tmp = top[2];
+		top[2] = top[1];
+		top[1] = top[0];
+		top[0] = tmp;
+		tmp = bottom[2];
+		bottom[2] = bottom[1];
+		bottom[1] = bottom[0];
+		bottom[0] = tmp;
 		centre = (centre + 6) % 9;
 	}
 
@@ -54,6 +70,14 @@ public class MapManager : MonoBehaviour {
 		bottom[0] = (bottom[0] + 1) % 9;
 		bottom[1] = (bottom[1] + 1) % 9;
 		bottom[2] = (bottom[2] + 1) % 9;
+		int tmp = left[0];
+		left[0] = left[1];
+		left[1] = left[2];
+		left[2] = tmp;
+		tmp = right[0];
+		right[0] = right[1];
+		right[1] = right[2];
+		right[2] = tmp;
 		centre = (centre + 1) % 9;
 	}
 
@@ -67,6 +91,14 @@ public class MapManager : MonoBehaviour {
 		top[0] = (top[0] + 8) % 9;
 		top[1] = (top[1] + 8) % 9;
 		top[2] = (top[2] + 8) % 9;
+		int tmp = left[2];
+		left[2] = left[1];
+		left[1] = left[0];
+		left[0] = tmp;
+		tmp = right[2];
+		right[2] = right[1];
+		right[1] = right[0];
+		right[0] = tmp;
 		centre = (centre + 8) % 9;
 	}
 
