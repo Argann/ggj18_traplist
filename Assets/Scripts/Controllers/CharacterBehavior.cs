@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterBehavior : GenericController {
+
+
     
     /// <summary>
     /// Vitesse de déplacement du personnage

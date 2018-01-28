@@ -12,7 +12,7 @@ public class DroneBehavior : GenericController {
     /// <summary>
     /// ???
     /// </summary>
-    public Piege TODELETE;
+    public GameObject TODELETE;
 
     /// <summary>
     /// Vitesse de déplacement du drone
@@ -49,6 +49,11 @@ public class DroneBehavior : GenericController {
     /// </summary>
     private Camera came;
 
+    /// <summary>
+    /// Est-ce la première frame d'appui sur la touche action ?
+    /// </summary>
+    private bool is_action_down;
+
     
 
 	void Start () {
@@ -58,7 +63,7 @@ public class DroneBehavior : GenericController {
         Inventories.Init();
         Inventories.AddTrap(TODELETE, 1);
         Inventories.AddTrap(TODELETE, 2);
-
+        is_action_down = false;
         came = Camera.main;
     }
 	
@@ -79,9 +84,18 @@ public class DroneBehavior : GenericController {
 
         // Gestion de l'action
         float action = Input.GetAxisRaw("ActionP"+player);
-        if (action != 0f && !Inventories.IsEmpty(player)) {
-            Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation, MapManager.GetCurrentCentre().transform);
-            Inventories.DeleteTrap(player);
+        if (action != 0f) {
+
+            if (!is_action_down && !Inventories.IsEmpty(player)) {
+                Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation, MapManager.GetCurrentCentre().transform);
+
+                Inventories.DeleteTrap(player);
+
+                is_action_down = true;
+            }
+            
+        } else {
+            is_action_down = false;
         }
     }
 

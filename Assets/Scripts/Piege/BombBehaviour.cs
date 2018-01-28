@@ -22,6 +22,10 @@ public class BombBehaviour : Piege {
 	void Update () {
 	}
 
+    public void Activate() {
+        GetComponent<CircleCollider2D>().enabled = true;
+    }
+
 	public void Explode() {
         anim.SetBool("explodes", true);
         ps.Play();

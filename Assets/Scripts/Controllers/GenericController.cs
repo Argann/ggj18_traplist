@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class GenericController : MonoBehaviour {
 
+    [SerializeField]
+    private GlitchManager gm;
+
     /// <summary>
     /// Numéro du joueur contrôlant l'entité
     /// </summary>
