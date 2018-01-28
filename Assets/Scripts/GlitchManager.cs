@@ -6,6 +6,10 @@ using Kino;
 [RequireComponent(typeof(AnalogGlitch))]
 public class GlitchManager : MonoBehaviour {
 
+    private float baseScanLineJitter;
+    private float baseVerticalJump;
+    private float baseHorizontalShake;
+    private float baseDolorDrift;
 
     [SerializeField]
     private float time;
@@ -22,6 +26,13 @@ public class GlitchManager : MonoBehaviour {
         else if (instance != this)
             //Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
             Destroy(gameObject);
+
+        AnalogGlitch ag = GetComponent<AnalogGlitch>();
+
+        baseScanLineJitter = ag.scanLineJitter;
+        baseVerticalJump = ag.verticalJump;
+        baseHorizontalShake = ag.horizontalShake;
+        baseDolorDrift = ag.colorDrift;
     }
 
     public void LaunchGlitch() {
@@ -30,18 +41,16 @@ public class GlitchManager : MonoBehaviour {
 
     private IEnumerator GlitchSwitch() {
 
-        Debug.Log("Launch");
-
         AnalogGlitch ag = GetComponent<AnalogGlitch>();
 
         float cpt = 0;
 
         while (cpt < time / 2) {
 
-            ag.scanLineJitter = Mathf.InverseLerp(0, time / 2, cpt);
-            ag.verticalJump = Mathf.InverseLerp(0, time / 2, cpt);
-            ag.horizontalShake = Mathf.InverseLerp(0, time / 2, cpt);
-            ag.colorDrift = Mathf.InverseLerp(0, time / 2, cpt);
+            ag.scanLineJitter = Mathf.InverseLerp(baseScanLineJitter, time / 2, cpt);
+            ag.verticalJump = Mathf.InverseLerp(baseVerticalJump, time / 2, cpt);
+            ag.horizontalShake = Mathf.InverseLerp(baseHorizontalShake, time / 2, cpt);
+            ag.colorDrift = Mathf.InverseLerp(baseDolorDrift, time / 2, cpt);
 
             cpt += Time.deltaTime;
             yield return new WaitForFixedUpdate();
@@ -51,19 +60,19 @@ public class GlitchManager : MonoBehaviour {
 
         while (cpt < time / 2) {
 
-            ag.scanLineJitter = Mathf.InverseLerp(time / 2, 0, cpt);
-            ag.verticalJump = Mathf.InverseLerp(time / 2, 0, cpt);
-            ag.horizontalShake = Mathf.InverseLerp(time / 2, 0, cpt);
-            ag.colorDrift = Mathf.InverseLerp(time / 2, 0, cpt);
+            ag.scanLineJitter = Mathf.InverseLerp(time / 2, baseScanLineJitter, cpt);
+            ag.verticalJump = Mathf.InverseLerp(time / 2, baseVerticalJump, cpt);
+            ag.horizontalShake = Mathf.InverseLerp(time / 2, baseHorizontalShake, cpt);
+            ag.colorDrift = Mathf.InverseLerp(time / 2, baseDolorDrift, cpt);
 
             cpt += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
 
-        ag.scanLineJitter = 0;
-        ag.verticalJump = 0;
-        ag.horizontalShake = 0;
-        ag.colorDrift = 0;
+        ag.scanLineJitter = baseScanLineJitter;
+        ag.verticalJump = baseVerticalJump;
+        ag.horizontalShake = baseHorizontalShake;
+        ag.colorDrift = baseDolorDrift;
 
     }
 }
