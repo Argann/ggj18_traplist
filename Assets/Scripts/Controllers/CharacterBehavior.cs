@@ -37,6 +37,11 @@ public class CharacterBehavior : GenericController {
     private bool is_jump_down;
 
     /// <summary>
+    /// Est-ce la première frame d'appui sur la touche bas ?
+    /// </summary>
+    private bool is_down_down;
+
+    /// <summary>
     /// Numéro du saut actuel, afin de limiter le double saut.
     /// </summary>
     private int jump_nb;
@@ -65,12 +70,50 @@ public class CharacterBehavior : GenericController {
 
         // Le joueur contrôlant le personnage n'appuie par défaut pas sur "saut"
         is_jump_down = false;
+
+        is_down_down = false;
 	}
 	
 
 	void Update () {
 
         float horizontal = Input.GetAxisRaw("HorizontalP" + player);
+
+        float vertical = Input.GetAxisRaw("VerticalP" + player);
+
+        // Désactivation OneWayPlatform, si on appuie sur "bas"
+        if (vertical > 0.9f) {
+
+            if (!is_down_down) {
+
+                Debug.Log("LEL");
+
+                GameObject[] gol = GameObject.FindGameObjectsWithTag("OneWay");
+
+                foreach (GameObject go in gol) {
+                    go.GetComponent<Collider2D>().enabled = false;
+                }
+
+                is_down_down = true;
+            }
+
+            
+        } else {
+
+            if (is_down_down) {
+
+                Debug.Log("LOL");
+
+                GameObject[] gol = GameObject.FindGameObjectsWithTag("OneWay");
+
+                foreach (GameObject go in gol) {
+                    go.GetComponent<Collider2D>().enabled = true;
+                }
+
+                is_down_down = false;
+            }
+            
+        }
 
         // Récupération de la vélocité en fonction de l'axe du joueur
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
