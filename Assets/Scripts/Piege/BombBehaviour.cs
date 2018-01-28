@@ -16,7 +16,8 @@ public class BombBehaviour : Piege {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-	}
+        SoundManager.instance.PlayClip(SoundManager.instance.MineInstall);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -27,6 +28,7 @@ public class BombBehaviour : Piege {
     }
 
 	public void Explode() {
+        SoundManager.instance.PlayClip(SoundManager.instance.MineBoom);
         anim.SetBool("explodes", true);
         ps.Play();
 	}

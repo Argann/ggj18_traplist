@@ -37,6 +37,8 @@ public class Item : MonoBehaviour {
 
             GetComponent<Collider2D>().enabled = false;
 
+            SoundManager.instance.PlayClip(SoundManager.instance.Item);
+
             Debug.Log("AddTrap P"+ coll.transform.parent.GetComponent<CharacterBehavior>().Player);
             // Quel joueur contrôle actuellement le personnage ?
             int player = coll.transform.parent.GetComponent<CharacterBehavior>().Player;

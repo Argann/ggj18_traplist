@@ -88,8 +88,6 @@ public class CharacterBehavior : GenericController {
 
             if (!is_down_down) {
 
-                Debug.Log("LEL");
-
                 GameObject[] gol = GameObject.FindGameObjectsWithTag("OneWay");
 
                 foreach (GameObject go in gol) {
@@ -103,9 +101,7 @@ public class CharacterBehavior : GenericController {
         } else {
 
             if (is_down_down) {
-
-                Debug.Log("LOL");
-
+                
                 GameObject[] gol = GameObject.FindGameObjectsWithTag("OneWay");
 
                 foreach (GameObject go in gol) {
@@ -157,6 +153,8 @@ public class CharacterBehavior : GenericController {
                     rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                     jump_nb++;
                     is_jump_down = true;
+
+                    SoundManager.instance.PlayClip(SoundManager.instance.Sauts[Random.Range(0, SoundManager.instance.Sauts.Count)]);
                 }
                 
             }
@@ -172,6 +170,7 @@ public class CharacterBehavior : GenericController {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Pieges") {
+            SoundManager.instance.PlayClip(SoundManager.instance.Mort);
             other.GetComponent<BombBehaviour>().Explode();
             Destroy(gameObject);
         }
