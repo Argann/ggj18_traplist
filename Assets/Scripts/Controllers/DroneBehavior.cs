@@ -87,7 +87,8 @@ public class DroneBehavior : GenericController {
         if (action != 0f) {
 
             if (!is_action_down && !Inventories.IsEmpty(player)) {
-                Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation, MapManager.GetCurrentCentre().transform);
+                //Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation, MapManager.GetCurrentCentre().transform);
+                Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation, Camera.main.transform.parent);
 
                 Inventories.DeleteTrap(player);
 
