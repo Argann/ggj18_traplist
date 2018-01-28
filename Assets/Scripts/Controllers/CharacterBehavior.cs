@@ -8,9 +8,6 @@ using UnityEngine;
 /// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterBehavior : GenericController {
-
-
-    
     /// <summary>
     /// Vitesse de déplacement du personnage
     /// </summary>
@@ -88,8 +85,6 @@ public class CharacterBehavior : GenericController {
 
             if (!is_down_down) {
 
-                Debug.Log("LEL");
-
                 GameObject[] gol = GameObject.FindGameObjectsWithTag("OneWay");
 
                 foreach (GameObject go in gol) {
@@ -103,8 +98,6 @@ public class CharacterBehavior : GenericController {
         } else {
 
             if (is_down_down) {
-
-                Debug.Log("LOL");
 
                 GameObject[] gol = GameObject.FindGameObjectsWithTag("OneWay");
 
