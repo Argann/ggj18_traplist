@@ -63,6 +63,11 @@ public class DroneBehavior : GenericController {
         Inventories.Init();
         Inventories.AddTrap(TODELETE, 1);
         Inventories.AddTrap(TODELETE, 2);
+        Inventories.AddTrap(TODELETE, 2);
+        Inventories.AddTrap(TODELETE, 2);
+        Inventories.AddTrap(TODELETE, 2);
+        Inventories.AddTrap(TODELETE, 2);
+        Inventories.AddTrap(TODELETE, 2);
         is_action_down = false;
         came = Camera.main;
     }
