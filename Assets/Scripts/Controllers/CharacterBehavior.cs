@@ -78,6 +78,7 @@ public class CharacterBehavior : GenericController {
         if (transform.position.y - MapManager.stmoy.y > 10 ||
             transform.position.y - MapManager.stmoy.y < -10) {
                 transform.position = MapManager.stmoy;
+                MapManager.Rearrange();
             }
         float horizontal = Input.GetAxisRaw("HorizontalP" + player);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Settings : MonoBehaviour {
 
@@ -45,7 +46,12 @@ public class Settings : MonoBehaviour {
         } else {
             cpt = delai;
         }
-
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) Invoke("ReloadInTwoS", 2f);
 	}
+
+    private void ReloadInTwoS() {
+        SceneManager.LoadScene(1);
+    }
 
 }
