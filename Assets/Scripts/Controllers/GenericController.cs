@@ -32,5 +32,6 @@ public class GenericController : MonoBehaviour {
 
     void SwapPlayers() {
         player = 3 - player;
+        GlitchManager.instance.LaunchGlitch();
     }
 }

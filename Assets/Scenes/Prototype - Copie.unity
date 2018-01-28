@@ -989,6 +989,11 @@ Prefab:
       propertyPath: character
       value: 
       objectReference: {fileID: 1211330702}
+    - target: {fileID: 82690656090445486, guid: bf8686fb72b5c2a40a499c8b9f7ff814,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf8686fb72b5c2a40a499c8b9f7ff814, type: 2}
   m_IsPrefabParent: 0
