@@ -5,26 +5,26 @@ using UnityEngine;
 public class ItemGenerator : MonoBehaviour {
 
     /// <summary>
-    /// Les items peuvent spawner dans une certaine range autour de la caméra.
-    /// Cette range est définie ici.
+    /// Les items peuvent spawner a certains points de spawn.
+    /// Cette liste les contient tous.
     /// </summary>
     [SerializeField]
-    private Vector2 range;
+    private List<Transform> spawners;
 
-    public Vector2 Range {
-        get { return range; }
-        set { range = value; }
+    public List<Transform> Spawners {
+        get { return spawners; }
+        set { spawners = value; }
     }
 
     /// <summary>
     /// Liste d'items pouvant être instantiés
     /// </summary>
     [SerializeField]
-    private List<GameObject> items;
+    private GameObject item;
 
-    public List<GameObject> Items {
-        get { return items; }
-        set { items = value; }
+    public GameObject Item {
+        get { return item; }
+        set { item = value; }
     }
 
     /// <summary>
@@ -59,20 +59,18 @@ public class ItemGenerator : MonoBehaviour {
 
             while (!correctPosition) {
                 // Définition d'une position de spawn aléatoire autour de la caméra
-                item_position = new Vector2(
-                        Random.Range(Camera.main.transform.position.x - range.x, Camera.main.transform.position.x + range.x),
-                        Random.Range(Camera.main.transform.position.y - range.y, Camera.main.transform.position.x + range.y)
-                    );
+                item_position = spawners[Random.Range(0,spawners.Count)].position;
 
                 // Vérification emplacement plateforme
-                correctPosition = !Physics2D.Raycast(item_position, Vector2.up, 0.1f, LayerMask.GetMask("Objects")).collider;
+                correctPosition = !Physics2D.Raycast(item_position, Vector2.up, 0.1f, LayerMask.GetMask("Items")).collider;
 
                 // Attente de la frame suivante afin de ne pas bloquer dans une boucle infinie
                 yield return new WaitForEndOfFrame();
             }
-            
+
             // Une fois une position correcte trouvée, on instantie l'item.
-            Instantiate(items[Random.Range(0, items.Count)], item_position, Quaternion.identity, MapManager.GetCurrentCentre().transform);
+            Instantiate(item, item_position, Quaternion.identity, MapManager.GetCurrentCentre().transform);
+
 
             // Après l'instantiation, on attend un temps aléatoire avant de faire spawner le suivant
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
