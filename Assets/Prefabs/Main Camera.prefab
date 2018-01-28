@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 2
-  TODELETE: {fileID: 0}
+  TODELETE: {fileID: 1398416272207668, guid: 9f5c122c453036345a28463212640b87, type: 2}
   speed: 20
 --- !u!114 &114821946543940858
 MonoBehaviour:

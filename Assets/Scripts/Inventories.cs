@@ -7,9 +7,9 @@ public static class Inventories {
     /// <summary>
     /// Inventaire des deux joueurs
     /// </summary>
-    private static List<Piege>[] inventaires = new List<Piege>[3];
+    private static Queue<GameObject>[] inventaires = new Queue<GameObject>[3];
 
-    public static List<Piege>[] Inventaires {
+    public static Queue<GameObject>[] Inventaires {
         get { return inventaires; }
     }
 
@@ -17,8 +17,8 @@ public static class Inventories {
     /// Initialise les inventaires
     /// </summary>
     public static void Init() {
-        inventaires[1] = new List<Piege>();
-        inventaires[2] = new List<Piege>();
+        inventaires[1] = new Queue<GameObject>();
+        inventaires[2] = new Queue<GameObject>();
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ public static class Inventories {
     /// <param name="player">
     ///     Joueur dont l'inventaire va être modifié
     /// </param>
-    public static void AddTrap(Piege piege, int player) {
-        inventaires[player].Add(piege);
+    public static void AddTrap(GameObject piege, int player) {
+        inventaires[player].Enqueue(piege);
     }
 
     /// <summary>
@@ -48,8 +48,9 @@ public static class Inventories {
     /// </summary>
     /// <param name="player">Joueur dont il faut récupérer le premier piège de l'inventaire</param>
     /// <returns></returns>
-    public static Piege GetTrap(int player) {
-        return inventaires[player][0];
+    public static GameObject GetTrap(int player) {
+        Debug.Log(inventaires[player]);
+        return inventaires[player].Peek(); ;
     }
 
     /// <summary>
@@ -57,6 +58,6 @@ public static class Inventories {
     /// </summary>
     /// <param name="player">Joueur dont il faut supprimer le premier piège de l'inventaire</param>
     public static void DeleteTrap(int player) {
-        inventaires[player].RemoveAt(0);
+        inventaires[player].Dequeue();
     }
 }

@@ -12,9 +12,9 @@ public class Item : MonoBehaviour {
     /// Piège à gagner si le joueur ramasse l'item
     /// </summary>
     [SerializeField]
-    private Piege contenu;
+    private GameObject contenu;
 
-    public Piege Contenu {
+    public GameObject Contenu {
         get { return contenu; }
         set { contenu = value; }
     }
