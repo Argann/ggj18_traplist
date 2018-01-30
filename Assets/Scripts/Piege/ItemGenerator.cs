@@ -69,7 +69,8 @@ public class ItemGenerator : MonoBehaviour {
             }
 
             // Une fois une position correcte trouvée, on instantie l'item.
-            Instantiate(item, item_position, Quaternion.identity, MapManager.GetCurrentCentre().transform);
+            GameObject instance = Instantiate(item, item_position, Quaternion.identity);
+            instance.transform.SetParent(MapManager.GetTileAt(instance.transform.position).transform);
 
 
             // Après l'instantiation, on attend un temps aléatoire avant de faire spawner le suivant
