@@ -49,7 +49,6 @@ public static class Inventories {
     /// <param name="player">Joueur dont il faut récupérer le premier piège de l'inventaire</param>
     /// <returns></returns>
     public static GameObject GetTrap(int player) {
-        Debug.Log(inventaires[player]);
         return inventaires[player].Peek(); ;
     }
 

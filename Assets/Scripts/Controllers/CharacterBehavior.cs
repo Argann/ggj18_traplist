@@ -75,11 +75,6 @@ public class CharacterBehavior : GenericController {
 	
 
 	void Update () {
-        if (transform.position.y - MapManager.stmoy.y > 10 ||
-            transform.position.y - MapManager.stmoy.y < -10) {
-                transform.position = MapManager.stmoy;
-                MapManager.Rearrange();
-            }
         float horizontal = Input.GetAxisRaw("HorizontalP" + player);
 
         float vertical = Input.GetAxisRaw("VerticalP" + player);
@@ -169,54 +164,15 @@ public class CharacterBehavior : GenericController {
 
     }
 
-
-    private Collider2D current;
-
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Pieges") {
             SoundManager.instance.PlayClip(SoundManager.instance.Mort);
             other.GetComponent<BombBehaviour>().Explode();
+            MapManager.Reinit();
             Destroy(gameObject);
         }
         if (other.gameObject.tag == "Tiles") {
-            current = other;
-            // Ici, comparer position du joueur et des Tiles pour savoir si top, bot, left, right
-            if (transform.position.x < (other.transform.position.x - (other.bounds.size.x / 2))) {
-                Invoke("MoveLeftTiles", .2f);
-            }
-            if (transform.position.x > (other.transform.position.x + (other.bounds.size.x / 2))) {
-                Invoke("MoveRightTiles", .2f);
-            }
-            if (transform.position.y < (other.transform.position.y - (other.bounds.size.y / 2))) {
-                Invoke("MoveBottomTiles", .2f);
-            }
-            if (transform.position.y > (other.transform.position.y + (other.bounds.size.y / 2))) {
-                Invoke("MoveTopTiles", .2f);
-            }
+            MapManager.TranslateMap(other);
         }
-    }
-
-    void MoveLeftTiles() {
-        if(CheckBoundaries()) MapManager.MoveLeftTiles();
-    }
-
-    void MoveRightTiles() {
-        if(CheckBoundaries()) MapManager.MoveRightTiles();
-    }
-
-    void MoveBottomTiles() {
-        if(CheckBoundaries()) MapManager.MoveBottomTiles();
-    }
-
-    void MoveTopTiles() {
-        if(CheckBoundaries()) MapManager.MoveTopTiles();
-    }
-
-    bool CheckBoundaries() {
-        return 
-            transform.position.x > (current.transform.position.x - 4.5f) &&
-            transform.position.x < (current.transform.position.x + 4.5f) &&
-            transform.position.y > (current.transform.position.y - 4.5f) &&
-            transform.position.y < (current.transform.position.y + 4.5f);
     }
 }
