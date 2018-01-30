@@ -10,36 +10,29 @@ public class MapManager : MonoBehaviour {
 	private static int[] bottom = {2,5,8};
 	private static int centre = 4;
 
-	private static float width = 9f;
-	private static float height = 9f;
+	private static float MAP_WIDTH = 9f;
+	private static float MAP_HEIGHT = 9f;
 
 	private static GameObject[] staticTiles = new GameObject[9];
 	void Start() {
 		staticTiles = tiles;
 	}
 
-	public Vector2 moy = new Vector2(0,0);
-	public static Vector2 stmoy = new Vector2(0,0);
-
-	void Update() {
-		moy = new Vector2(0,0);
-		foreach (GameObject tile in tiles) {
-			moy = moy + new Vector2(tile.transform.position.x, tile.transform.position.y);
-		}
-		moy = moy / tiles.Length;
-		stmoy = moy;
+	public static void TranslateMap(Collider2D dest) {
+		Vector3 currentPos = staticTiles[centre].transform.position;
+		Vector3 destPos = dest.transform.position;
+		if (destPos.x < currentPos.x) MoveRightTiles();
+		if (destPos.x > currentPos.x) MoveLeftTiles();
+		if (destPos.y < currentPos.y) MoveTopTiles();
+		if (destPos.y > currentPos.y) MoveBottomTiles();
 	}
 	
-	public static void MoveLeftTiles() {
-		staticTiles[left[0]].transform.position = new Vector2(staticTiles[left[0]].transform.position.x + (3 * width), staticTiles[left[0]].transform.position.y);
-		staticTiles[left[1]].transform.position = new Vector2(staticTiles[left[1]].transform.position.x + (3 * width), staticTiles[left[1]].transform.position.y);
-		staticTiles[left[2]].transform.position = new Vector2(staticTiles[left[2]].transform.position.x + (3 * width), staticTiles[left[2]].transform.position.y);
-		left[0] = (left[0] + 3) % 9;
-		left[1] = (left[1] + 3) % 9;
-		left[2] = (left[2] + 3) % 9;
-		right[0] = (right[0] + 3) % 9;
-		right[1] = (right[1] + 3) % 9;
-		right[2] = (right[2] + 3) % 9;
+	private static void MoveLeftTiles() {
+		for (int i = 0; i < left.Length; i++) {
+			staticTiles[left[i]].transform.position = new Vector2(staticTiles[left[i]].transform.position.x + (3 * MAP_WIDTH), staticTiles[left[i]].transform.position.y);
+			left[i] = (left[i] + 3) % 9;
+			right[i] = (right[i] + 3) % 9;
+		}
 		int tmp = top[0];
 		top[0] = top[1];
 		top[1] = top[2];
@@ -48,19 +41,16 @@ public class MapManager : MonoBehaviour {
 		bottom[0] = bottom[1];
 		bottom[1] = bottom[2];
 		bottom[2] = tmp;
-		centre = (centre + 3) % 9;
+		Rearrange();
+		UpdateColliders();
 	}
 
-	public static void MoveRightTiles() {
-		staticTiles[right[0]].transform.position = new Vector2(staticTiles[right[0]].transform.position.x - (3 * width), staticTiles[right[0]].transform.position.y);
-		staticTiles[right[1]].transform.position = new Vector2(staticTiles[right[1]].transform.position.x - (3 * width), staticTiles[right[1]].transform.position.y);
-		staticTiles[right[2]].transform.position = new Vector2(staticTiles[right[2]].transform.position.x - (3 * width), staticTiles[right[2]].transform.position.y);
-		right[0] = (right[0] + 6) % 9;
-		right[1] = (right[1] + 6) % 9;
-		right[2] = (right[2] + 6) % 9;
-		left[0] = (left[0] + 6) % 9;
-		left[1] = (left[1] + 6) % 9;
-		left[2] = (left[2] + 6) % 9;
+	private static void MoveRightTiles() {
+		for (int i = 0; i < right.Length; i++) {
+			staticTiles[right[i]].transform.position = new Vector2(staticTiles[right[i]].transform.position.x - (3 * MAP_WIDTH), staticTiles[right[i]].transform.position.y);
+			right[i] = (right[i] + 6) % 9;
+			left[i] = (left[i] + 6) % 9;
+		}
 		int tmp = top[2];
 		top[2] = top[1];
 		top[1] = top[0];
@@ -69,19 +59,16 @@ public class MapManager : MonoBehaviour {
 		bottom[2] = bottom[1];
 		bottom[1] = bottom[0];
 		bottom[0] = tmp;
-		centre = (centre + 6) % 9;
+		Rearrange();
+		UpdateColliders();
 	}
 
-	public static void MoveTopTiles() {
-		staticTiles[top[0]].transform.position = new Vector2(staticTiles[top[0]].transform.position.x, staticTiles[top[0]].transform.position.y - (3 * height));
-		staticTiles[top[1]].transform.position = new Vector2(staticTiles[top[1]].transform.position.x, staticTiles[top[1]].transform.position.y - (3 * height));
-		staticTiles[top[2]].transform.position = new Vector2(staticTiles[top[2]].transform.position.x, staticTiles[top[2]].transform.position.y - (3 * height));
-		top[0] = (top[0] + 1) % 9;
-		top[1] = (top[1] + 1) % 9;
-		top[2] = (top[2] + 1) % 9;
-		bottom[0] = (bottom[0] + 1) % 9;
-		bottom[1] = (bottom[1] + 1) % 9;
-		bottom[2] = (bottom[2] + 1) % 9;
+	private static void MoveTopTiles() {
+		for (int i = 0; i < top.Length; i++) {
+			staticTiles[top[i]].transform.position = new Vector2(staticTiles[top[i]].transform.position.x, staticTiles[top[i]].transform.position.y - (3 * MAP_HEIGHT));
+			top[i] = (top[i] + 1) % 9;
+			bottom[i] = (bottom[i] + 1) % 9;
+		}
 		int tmp = left[0];
 		left[0] = left[1];
 		left[1] = left[2];
@@ -90,19 +77,16 @@ public class MapManager : MonoBehaviour {
 		right[0] = right[1];
 		right[1] = right[2];
 		right[2] = tmp;
-		centre = (centre + 1) % 9;
+		Rearrange();
+		UpdateColliders();
 	}
 
-	public static void MoveBottomTiles() {
-		staticTiles[bottom[0]].transform.position = new Vector2(staticTiles[bottom[0]].transform.position.x, staticTiles[bottom[0]].transform.position.y + (3 * height));
-		staticTiles[bottom[1]].transform.position = new Vector2(staticTiles[bottom[1]].transform.position.x, staticTiles[bottom[1]].transform.position.y + (3 * height));
-		staticTiles[bottom[2]].transform.position = new Vector2(staticTiles[bottom[2]].transform.position.x, staticTiles[bottom[2]].transform.position.y + (3 * height));
-		bottom[0] = (bottom[0] + 8) % 9;
-		bottom[1] = (bottom[1] + 8) % 9;
-		bottom[2] = (bottom[2] + 8) % 9;
-		top[0] = (top[0] + 8) % 9;
-		top[1] = (top[1] + 8) % 9;
-		top[2] = (top[2] + 8) % 9;
+	private static void MoveBottomTiles() {
+		for (int i = 0; i < bottom.Length; i++) {
+			staticTiles[bottom[i]].transform.position = new Vector2(staticTiles[bottom[i]].transform.position.x, staticTiles[bottom[i]].transform.position.y + (3 * MAP_HEIGHT));
+			bottom[i] = (bottom[i] + 8) % 9;
+			top[i] = (top[i] + 8) % 9;
+		}
 		int tmp = left[2];
 		left[2] = left[1];
 		left[1] = left[0];
@@ -111,17 +95,57 @@ public class MapManager : MonoBehaviour {
 		right[2] = right[1];
 		right[1] = right[0];
 		right[0] = tmp;
-		centre = (centre + 8) % 9;
+		Rearrange();
+		UpdateColliders();
 	}
 
 	public static GameObject GetCurrentCentre() {
 		return staticTiles[centre];
 	}
 
-	public static void Rearrange() {
+	private static void Rearrange() {
 		int sum = top[0] + top[1] + top[2]
 				+ left[1] + right[1]
 				+ bottom[0] + bottom[1] + bottom[2];
 		centre = 36 - sum;
+	}
+
+	public static GameObject GetTileAt(Vector3 tilePos) {
+		foreach (GameObject current in staticTiles) {
+			Vector3 currentPos = current.transform.position;
+			if ((tilePos.x <= (currentPos.x + (MAP_WIDTH/2))) &&
+				(tilePos.x > (currentPos.x - (MAP_WIDTH/2))) &&
+				(tilePos.y <= (currentPos.y + (MAP_HEIGHT/2))) &&
+				(tilePos.y > (currentPos.y - (MAP_HEIGHT/2))))
+					return current;
+		}
+		return GetCurrentCentre();
+	}
+
+	public static void Reinit() {
+		left[0] = 0;
+		left[1] = 1;
+		left[2] = 2;
+
+		right[0] = 6;
+		right[1] = 7;
+		right[2] = 8;
+
+		top[0] = 0;
+		top[1] = 3;
+		top[2] = 6;
+
+		bottom[0] = 2;
+		bottom[1] = 5;
+		bottom[2] = 8;
+		
+		centre = 4;
+	}
+
+	private static void UpdateColliders() {
+		foreach (GameObject tile in staticTiles) {
+			tile.GetComponent<Collider2D>().enabled = true;
+		}
+		staticTiles[centre].GetComponent<Collider2D>().enabled = false;
 	}
 }

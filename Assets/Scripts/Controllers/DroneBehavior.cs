@@ -12,7 +12,7 @@ public class DroneBehavior : GenericController {
     /// <summary>
     /// ???
     /// </summary>
-    public GameObject TODELETE;
+    public GameObject BombObject;
 
     /// <summary>
     /// Vitesse de déplacement du drone
@@ -54,20 +54,17 @@ public class DroneBehavior : GenericController {
     /// </summary>
     private bool is_action_down;
 
-    
+    /// <summary>
+    /// Nombre initial de bombe pour le joueur 2
+    /// </summary>
+    private const int NB_BOMB_INIT = 12;
 
 	void Start () {
         base.LoadSwap();
         // Instantiation des variables
 		rb2d = GetComponent<Rigidbody2D> ();
         Inventories.Init();
-        Inventories.AddTrap(TODELETE, 1);
-        Inventories.AddTrap(TODELETE, 2);
-        Inventories.AddTrap(TODELETE, 2);
-        Inventories.AddTrap(TODELETE, 2);
-        Inventories.AddTrap(TODELETE, 2);
-        Inventories.AddTrap(TODELETE, 2);
-        Inventories.AddTrap(TODELETE, 2);
+        for(int i = 0; i < NB_BOMB_INIT; i++) Inventories.AddTrap(BombObject, 2);
         is_action_down = false;
         came = Camera.main;
     }
@@ -92,7 +89,8 @@ public class DroneBehavior : GenericController {
         if (action != 0f) {
 
             if (!is_action_down && !Inventories.IsEmpty(player)) {
-                Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation, MapManager.GetCurrentCentre().transform);
+                GameObject instance = Instantiate(Inventories.GetTrap(player), transform.position, transform.rotation);
+                instance.transform.SetParent(MapManager.GetTileAt(instance.transform.position).transform);
 
                 Inventories.DeleteTrap(player);
 
