@@ -27,6 +27,8 @@ public class SystemManager : MonoBehaviour {
 
 	public void RedirectHome() {
 		Time.timeScale = 1;
+		nbDeathsP1 = 0;
+		nbDeathsP2 = 0;
 		SceneManager.LoadScene(0);
 	}
 }
