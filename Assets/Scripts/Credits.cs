@@ -18,7 +18,7 @@ public class Credits : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetAxisRaw("ActionP1") != 0 || Input.GetAxisRaw("ActionP2") != 0) {
+        if (Input.anyKey) {
             SceneManager.LoadScene(0);
         }
     }

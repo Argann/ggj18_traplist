@@ -10,6 +10,9 @@ public class GenericController : MonoBehaviour {
     [SerializeField]
     private GlitchManager gm;
 
+    [SerializeField]
+    public DisplayPlayer[] pMention;
+
     /// <summary>
     /// Numéro du joueur contrôlant l'entité
     /// </summary>
@@ -18,6 +21,10 @@ public class GenericController : MonoBehaviour {
     protected int player;
 
     private float delai = Settings.Delai;
+
+    protected DisplayPlayer dp;
+
+    protected static int randomBegin = 0;
 
     public int Player {
         get { return player; }
@@ -30,8 +37,17 @@ public class GenericController : MonoBehaviour {
         InvokeRepeating("SwapPlayers", delai, delai);
     }
 
-    void SwapPlayers() {
+    protected void SwapPlayers() {
         player = 3 - player;
+        Invoke("DisplayMention", 0.5f);
         GlitchManager.instance.LaunchGlitch();
+    }
+
+    protected void EnablePause() {
+        SystemManager.instance.Pause();
+    }
+
+    protected void DisplayMention() {
+        dp = Instantiate(pMention[player-1], transform);
     }
 }
